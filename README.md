@@ -34,7 +34,7 @@ Measured with `tests/bench.test.ts` on 350–400 letter messages:
 
 | Plugboard cables | Result |
 | --- | --- |
-| 0–6 | The right setting ranks in the top 15 of its rotor order in 16 of 16 test keys; a typical laptop cracks it in 5–10 s |
+| 0–6 | The right setting ranks in the top 15 of its rotor order in 16 of 16 test keys. In the browser, 5 cables usually crack in 5–15 s on a 16-thread laptop, with every letter right |
 | 8 | Recovered about half the time |
 | 10 (wartime standard) | Not recovered; this attack needs far longer messages |
 
