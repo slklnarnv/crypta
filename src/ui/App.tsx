@@ -86,6 +86,7 @@ export function App() {
       <header className="masthead">
         <span className="wordmark">crypta</span>
         <nav>
+          <a href="?daily">Daily puzzle</a>
           <a href="#how">How it works</a>
           <a href="https://github.com/slklnarnv/crypta">Source</a>
         </nav>
