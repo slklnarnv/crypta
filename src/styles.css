@@ -611,6 +611,309 @@ button {
   color: var(--ink-soft);
 }
 
+/* ---- daily puzzle ------------------------------------------------------------------ */
+
+.dateline {
+  margin: 0.75rem 0 0;
+  font: 600 1.15rem/1.2 var(--display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.captured {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0.85rem 1.1rem;
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+.captured dt {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.captured dd {
+  margin: 0;
+  font: 700 1.1rem/1.3 var(--type);
+}
+
+.decrypt .ch {
+  animation: flick 0.35s steps(3, end);
+}
+
+.decrypt.solved .ch {
+  color: #2a6a49; /* the tape stays light in dark mode */
+}
+
+.right {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.board {
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem 0 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.row-btn {
+  display: flex;
+  gap: 0.45rem;
+  width: 100%;
+  max-width: 23rem;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: inherit;
+}
+
+.cable {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 2.75rem;
+  border: 2px dashed var(--rule);
+  border-radius: 8px;
+  font: 700 1.25rem/1 var(--type);
+  transition: transform 0.15s;
+}
+
+.cable .end {
+  width: 1.1ch;
+  text-align: center;
+}
+
+.cable .wire {
+  width: 0.55rem;
+  height: 2px;
+  margin: 0 0.1rem;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0;
+}
+
+.row.active .cable:has(.end:not(:empty)) {
+  border: 2px solid var(--ink-soft);
+}
+
+.cable.full .wire {
+  opacity: 0.6;
+}
+
+.cable.m-green {
+  border: 2px solid var(--good);
+  background: var(--good);
+  color: var(--paper);
+}
+
+/* A tick, so green and grey differ by more than colour. */
+.cable.m-green:not(.inline)::after {
+  content: "✓";
+  position: absolute;
+  top: -0.45rem;
+  right: -0.3rem;
+  display: grid;
+  place-items: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--good);
+  font: 700 0.7rem/1 var(--body);
+}
+
+.cable.m-yellow {
+  border: 2px solid var(--lamp);
+  background: var(--lamp);
+  color: #3b2200;
+}
+
+.cable.m-grey {
+  border: 2px solid var(--machine-edge);
+  background: var(--machine);
+  color: var(--glass-letter);
+}
+
+.cable.inline {
+  flex: none;
+  height: 1.9rem;
+  padding: 0 0.4rem;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+button.row-btn .cable {
+  cursor: pointer;
+}
+
+.row.viewing .cable {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+.note {
+  min-height: 1.55em;
+  margin: 0.75rem 0 0;
+  text-align: center;
+  color: var(--pencil);
+  font-size: 0.98rem;
+}
+
+.console .machine {
+  padding-inline: 0.5rem;
+}
+
+.lamp.key {
+  border: 0;
+  padding: 0;
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.45), 0 0 0 var(--ring-w, 2px) var(--ring, #191a18);
+}
+
+.lamp.key.on {
+  box-shadow: 0 0 0 var(--ring-w, 2px) var(--ring, #191a18), 0 0 18px 4px var(--lamp-glow);
+}
+
+.lamp.key.k-paired {
+  --ring: #5fbf8a;
+  --ring-w: 3px;
+}
+
+.lamp.key.k-plugged {
+  --ring: var(--lamp);
+  --ring-w: 3px;
+}
+
+.lamp.key.k-maybe {
+  --ring: #9a7426;
+  --ring-w: 3px;
+}
+
+.lamp.key.k-free:not(.on) {
+  opacity: 0.35;
+}
+
+.console-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.ghost:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.legend .lamp {
+  display: inline-block;
+  width: 0.95rem;
+  margin-right: 0.3rem;
+  vertical-align: -0.12rem;
+}
+
+.result {
+  margin-top: 1.75rem;
+  padding: 1.25rem 1.1rem 1.4rem;
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+.result h2 {
+  margin-bottom: 0.5rem;
+}
+
+.result p {
+  margin: 0;
+}
+
+.answer {
+  font-family: var(--type);
+  white-space: nowrap;
+}
+
+.share {
+  margin: 0.9rem 0 1rem;
+  font: 400 1.05rem/1.35 var(--type);
+  white-space: pre;
+}
+
+.tally {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+}
+
+.tally dt {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.tally dd {
+  margin: 0;
+  font: 600 1.8rem/1.1 var(--display);
+  font-variant-numeric: tabular-nums;
+}
+
+.spread {
+  list-style: none;
+  display: grid;
+  gap: 0.3rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.spread li {
+  display: grid;
+  grid-template-columns: 1.2rem 1fr;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.spread .bar {
+  width: max(1.9rem, var(--w));
+  padding: 0 0.45rem;
+  border-radius: 3px;
+  background: var(--ink-soft);
+  color: var(--paper);
+  font-weight: 600;
+  text-align: right;
+}
+
+.spread .today .bar {
+  background: var(--good);
+}
+
 /* ---- small screens and motion ------------------------------------------------------- */
 
 @media (max-width: 560px) {
@@ -628,6 +931,15 @@ button {
   }
   .orders {
     grid-template-columns: repeat(20, 1fr);
+  }
+  .captured {
+    grid-template-columns: repeat(2, auto);
+  }
+  .captured div:first-child {
+    grid-column: 1 / -1;
+  }
+  .tally dd {
+    font-size: 1.5rem;
   }
 }
 
